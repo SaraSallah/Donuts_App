@@ -1,17 +1,36 @@
 package com.example.donuts_app.composable
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.donuts_app.ui.theme.PrimaryColor
 import com.example.donuts_app.ui.theme.Roboto
 import com.example.donuts_app.ui.theme.Type
 
@@ -27,13 +46,14 @@ fun ReusableText(
         color = color,
         fontSize = fontSize,
         fontWeight = fontWeight,
-        fontFamily = Roboto
-    )
+        fontFamily = Roboto ,
+        modifier = Modifier.wrapContentSize()
+     )
 
 }
 
 @Composable
-fun DefaultButton(
+fun ReusableButton(
     text: String,
     textColor: Color,
     background: Color,
@@ -53,14 +73,68 @@ fun DefaultButton(
             text,
             color = textColor,
             style = Type.text_20,
-            modifier =modifier
+            modifier = modifier
         )
+    }
+}
+
+@Composable
+fun ReusableImage(
+    image: Int,
+
+    ) {
+    Image(
+        painter = painterResource(id = image),
+        contentDescription = "",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+
+@Composable
+fun ReusableICon(icon: Int) {
+    Icon(
+        painter = painterResource(id = icon),
+        contentDescription = "",
+        tint = PrimaryColor,
+        modifier = Modifier.size(30.dp)
+    )
+}
+
+@Composable
+fun ReusableQuantityCard(
+    text: String,
+    textColor: Color,
+    background: Color,
+    fontSize: TextUnit,
+) {
+    Card(
+        modifier = Modifier.size(45.dp),
+        colors = CardDefaults.cardColors(containerColor = background),
+        shape = RoundedCornerShape(15.dp),
+
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+
+        ) {
+            ReusableText(
+                text = text, color = textColor, fontSize = fontSize)
+
+        }
+
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewTextStyle() {
+    ReusableQuantityCard(
+        text = "-", textColor = Color.White, background = Color.Black, fontSize = 32.sp)
+//    ReusableImage(image = R.drawable.donuts)
+//    ReusableICon(R.drawable.ic_round_arrow_back_ios)
+
 //
-    DefaultButton("dddddddddddd", Color.Black, Color.White, {}, modifier = Modifier)
+//    ReusableButton("dddddddddddd", Color.Black, Color.White, {}, modifier = Modifier)
 }
