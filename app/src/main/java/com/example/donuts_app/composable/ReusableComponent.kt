@@ -46,7 +46,6 @@ fun ReusableText(
         color = color,
         fontSize = fontSize,
         fontWeight = fontWeight,
-        fontFamily = Roboto ,
         modifier = Modifier.wrapContentSize()
      )
 
