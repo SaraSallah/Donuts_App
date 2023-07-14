@@ -1,21 +1,28 @@
-package com.example.donuts_app.screens
+package com.example.donuts_app.screens.on_boarding
 
+import android.icu.number.Scale
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.donuts_app.R
-import com.example.donuts_app.composable.DefaultButton
+import com.example.donuts_app.composable.ReusableButton
+import com.example.donuts_app.composable.ReusableImage
 import com.example.donuts_app.composable.ReusableText
 import com.example.donuts_app.composable.SpacerVertical
 import com.example.donuts_app.ui.theme.Background
@@ -31,6 +38,9 @@ fun OnBoardingScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
+        Box(modifier = Modifier.fillMaxWidth(1.4f)){
+            ReusableImage(image = R.drawable.img_1)
+        }
 
         Column(
             modifier = Modifier.padding(horizontal = 40.dp),
@@ -53,7 +63,7 @@ fun OnBoardingScreen() {
             )
             SpacerVertical(height = 60.dp)
 
-            DefaultButton(
+            ReusableButton(
                 stringResource(R.string.get_started),
                 Color.Black, Color.White, {},
                 modifier = Modifier
