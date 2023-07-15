@@ -35,12 +35,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import com.example.donuts_app.R
 import com.example.donuts_app.screens.home.DonutUiState
 import com.example.donuts_app.screens.home.HomeUiState
 import com.example.donuts_app.screens.home.HomeViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.donuts_app.ui.theme.Black
 import com.example.donuts_app.ui.theme.Black60
 import com.example.donuts_app.ui.theme.Black80
@@ -49,10 +49,9 @@ import com.example.donuts_app.ui.theme.SecondaryColor
 import com.example.donuts_app.ui.theme.SecondaryTextColor
 import com.example.donuts_app.ui.theme.White
 
+@JvmOverloads
 @Composable
-fun LazyRowOffers(
-    homeViewModel : HomeViewModel = hiltViewModel()
-){
+fun LazyRowOffers(homeViewModel: HomeViewModel = hiltViewModel()){
     val state by homeViewModel.state.collectAsState()
     LazyRowDonut(state = state )
 }
