@@ -10,7 +10,8 @@ data class DonutUiState(
     val donutDescription:String,
     val oldPrice:String,
     val newPrice:String,
-    val colorBackGround: androidx.compose.ui.graphics.Color
+    val colorBackGround: androidx.compose.ui.graphics.Color,
+    val isFav : Boolean = false ,
 )
 data class DonutsUiState(
     val images : Int ,

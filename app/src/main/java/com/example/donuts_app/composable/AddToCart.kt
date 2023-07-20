@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -25,7 +27,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.donuts_app.R
+import com.example.donuts_app.navigation.Screen
 import com.example.donuts_app.screens.add_to_cart.AddFavourite
 import com.example.donuts_app.ui.theme.Background
 import com.example.donuts_app.ui.theme.Black
@@ -42,7 +47,7 @@ import com.example.donuts_app.ui.theme.White87
 fun Donut() {
     Box(
         modifier = Modifier
-            .fillMaxHeight(.6f)
+            .fillMaxHeight()
             .fillMaxWidth()
             .background(Background),
     ) {
@@ -50,7 +55,8 @@ fun Donut() {
     }
     Row(
         modifier = Modifier
-            .padding(top = 45.dp , start = 32.dp)
+            .background(Background)
+            .padding(top = 45.dp, start = 32.dp)
     )
     {
     ReusableICon(R.drawable.ic_round_arrow_back_ios)
@@ -59,7 +65,18 @@ fun Donut() {
 }
 
 @Composable
-fun BottomCard(){
+fun BottomCard(navController: NavController){
+    Box(){
+    Card(
+        modifier = Modifier
+            .wrapContentSize()
+            .wrapContentHeight()
+            .offset((310).dp, (-35).dp),
+        shape = RoundedCornerShape(size = 16.dp),
+        colors = CardDefaults.cardColors(Color.White),
+    ) {
+        AddFavourite(onClick = {})
+    }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,7 +88,7 @@ fun BottomCard(){
         Column (
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 40.dp),
+                .padding(horizontal = 40.dp).padding(top=16.dp),
             horizontalAlignment = Alignment.Start
                 ){
 
@@ -109,7 +126,7 @@ fun BottomCard(){
                     text = "Add To Cart",
                     textColor = Color.White ,
                     background = PrimaryColor ,
-                    onClick = { /*TODO*/ },
+                    onClick = { navController.navigate(Screen.HomeScreen.route)},
                     modifier = Modifier
                 )
 
@@ -118,12 +135,14 @@ fun BottomCard(){
         }
 
     }
+    }
 
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewDonut(){
-    Donut()
-//    BottomCard()
+//    Donut()
+    val navController = rememberNavController()
+    BottomCard(navController)
 }

@@ -45,16 +45,27 @@ fun OnBoardingScreen(navController: NavController) {
         }
 
         Column(
-            modifier = Modifier.padding(horizontal = 40.dp),
+            modifier = Modifier.padding(horizontal = 36.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ReusableText(
-                text = stringResource(R.string.gonuts_with_donuts),
-                color = PrimaryColor,
-                fontSize = 54.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-            SpacerVertical(height = 20.dp)
+            Column(horizontalAlignment = Alignment.Start
+            ) {
+                ReusableText(
+                    text = stringResource(R.string.gonuts_with_donuts),
+                    color = PrimaryColor,
+                    fontSize = 54.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+                SpacerVertical(height = 8.dp)
+                ReusableText(
+                    text = "Donut",
+                    color = PrimaryColor,
+                    fontSize = 54.sp,
+                    fontWeight = FontWeight.SemiBold,
+                )
+                SpacerVertical(height = 20.dp)
+            }
+
 
             ReusableText(
                 text = stringResource(R.string.on_boarding_String),
