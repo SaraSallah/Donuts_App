@@ -8,19 +8,25 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.donuts_app.R
+import com.example.donuts_app.screens.add_to_cart.AddFavourite
 import com.example.donuts_app.ui.theme.Background
 import com.example.donuts_app.ui.theme.Black
 import com.example.donuts_app.ui.theme.Black60
@@ -36,7 +42,7 @@ import com.example.donuts_app.ui.theme.White87
 fun Donut() {
     Box(
         modifier = Modifier
-            .fillMaxHeight(.5f)
+            .fillMaxHeight(.6f)
             .fillMaxWidth()
             .background(Background),
     ) {
@@ -51,6 +57,7 @@ fun Donut() {
     }
 
 }
+
 @Composable
 fun BottomCard(){
     Card(
@@ -58,15 +65,16 @@ fun BottomCard(){
             .fillMaxWidth()
             .fillMaxHeight(.57f),
         shape = RoundedCornerShape(topStart = 32.dp , topEnd = 32.dp),
-        colors = CardDefaults.cardColors(White60),
+        colors = CardDefaults.cardColors(Color.White),
 
         ){
         Column (
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 40.dp, vertical = 35.dp),
+                .padding(horizontal = 40.dp),
             horizontalAlignment = Alignment.Start
                 ){
+
             ReusableText(text = "Strawberry Wheel"
                 , color = PrimaryColor, fontSize = 30.sp)
             SpacerVertical(height = 33.dp)
@@ -116,6 +124,6 @@ fun BottomCard(){
 @Preview(showBackground = true)
 @Composable
 fun PreviewDonut(){
-//    Donut()
-    BottomCard()
+    Donut()
+//    BottomCard()
 }

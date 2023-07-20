@@ -1,5 +1,6 @@
 package com.example.donuts_app.screens.home
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.donuts_app.R
 import com.example.donuts_app.ui.theme.PinkBackground
@@ -10,7 +11,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 @HiltViewModel
-class HomeViewModel @Inject constructor() :ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
     private val _state = MutableStateFlow(HomeUiState())
    val state =_state.asStateFlow()
 

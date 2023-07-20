@@ -80,7 +80,6 @@ fun ReusableButton(
 @Composable
 fun ReusableImage(
     image: Int,
-
     ) {
     Image(
         painter = painterResource(id = image),

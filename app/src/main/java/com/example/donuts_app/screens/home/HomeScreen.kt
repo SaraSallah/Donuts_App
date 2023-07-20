@@ -7,14 +7,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.donuts_app.R
-import com.example.donuts_app.composable.LazyRowDonuts
-import com.example.donuts_app.composable.LazyRowOffers
+import com.example.donuts_app.composable.LazyRowDonut
+import com.example.donuts_app.composable.LazyRowDonutPrice
 import com.example.donuts_app.composable.ReusableText
 import com.example.donuts_app.composable.RoundedIconButton
 import com.example.donuts_app.composable.SpacerHorizontal
@@ -22,16 +26,20 @@ import com.example.donuts_app.composable.SpacerVertical
 import com.example.donuts_app.ui.theme.Background
 import com.example.donuts_app.ui.theme.Black
 import com.example.donuts_app.ui.theme.Black60
-import com.example.donuts_app.ui.theme.Black80
 import com.example.donuts_app.ui.theme.PrimaryColor
 import com.example.donuts_app.ui.theme.SecondaryTextColor
 
+@JvmOverloads
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController,
+    homeViewModel: HomeViewModel = hiltViewModel(),
+) {
+    val state by homeViewModel.state.collectAsState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top =56.dp ),
+            .padding(top = 56.dp),
         horizontalAlignment = Alignment.Start,
     ) {
         Row(
@@ -61,7 +69,8 @@ fun HomeScreen() {
 
         }
         SpacerVertical(height = 24.dp)
-        LazyRowOffers()
+        LazyRowDonut(state = state
+            ,navController = navController)
 
         SpacerVertical(height = 32.dp)
         Row() {
@@ -71,20 +80,14 @@ fun HomeScreen() {
         }
         SpacerVertical(height = 32.dp)
         Row() {
-            LazyRowDonuts()
+            LazyRowDonutPrice(state = state,navController=navController)
+
+//            LazyRowDonuts()
 
         }
 
 
     }
 
-
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewHomeScreen() {
-    HomeScreen()
 
 }

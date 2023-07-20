@@ -15,7 +15,7 @@ import com.example.donuts_app.screens.home.HomeScreen
 fun BottomNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = BottomBarScreen.Home.route) {
         composable(BottomBarScreen.Home.route) {
-                HomeScreen()
+            HomeScreen(navController)
         }
         composable(BottomBarScreen.Favorites.route) {
             FavoritesScreen()

@@ -35,45 +35,56 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.donuts_app.R
+import com.example.donuts_app.navigation.Screen
 import com.example.donuts_app.screens.home.DonutUiState
 import com.example.donuts_app.screens.home.HomeUiState
 import com.example.donuts_app.screens.home.HomeViewModel
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.donuts_app.ui.theme.Black
 import com.example.donuts_app.ui.theme.Black60
 import com.example.donuts_app.ui.theme.Black80
 import com.example.donuts_app.ui.theme.PrimaryColor
-import com.example.donuts_app.ui.theme.SecondaryColor
-import com.example.donuts_app.ui.theme.SecondaryTextColor
-import com.example.donuts_app.ui.theme.White
 
 @JvmOverloads
 @Composable
-fun LazyRowOffers(homeViewModel: HomeViewModel = hiltViewModel()){
+fun LazyRowOffers(
+    homeViewModel: HomeViewModel = hiltViewModel(),
+    navController: NavController,
+) {
     val state by homeViewModel.state.collectAsState()
-    LazyRowDonut(state = state )
+    LazyRowDonut(state = state, navController = navController)
 }
+
 @Composable
-fun LazyRowDonut(state : HomeUiState){
+fun LazyRowDonut(
+    state: HomeUiState,
+    navController: NavController,
+) {
     LazyRow(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .height(325.dp),
-        contentPadding = PaddingValues(horizontal =32.dp),
+        contentPadding = PaddingValues(horizontal = 32.dp),
         horizontalArrangement = Arrangement.spacedBy(48.dp)
-    ){
-        items(state.todayOffers){
-            DonutCard(state = it)
+    ) {
+        items(state.todayOffers) {
+            DonutCard(
+                state = it, navController = navController
+            )
         }
     }
 }
 @Composable
 fun DonutCard(
-    state : DonutUiState
+    state: DonutUiState,
+    navController: NavController,
 ) {
     Box(
-        modifier = Modifier.background(Color.White)
+        modifier = Modifier
+            .background(Color.White)
             .height(325.dp)
             .width(195.dp)
             .clickable {},
@@ -81,7 +92,9 @@ fun DonutCard(
         contentAlignment = Alignment.Center
     ) {
             Card(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable { navController.navigate(Screen.AddToCartScreen.route) },
                 colors = CardDefaults.cardColors(state.colorBackGround)
             ) { }
             Card(shape = CircleShape,

@@ -20,16 +20,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.donuts_app.R
 import com.example.donuts_app.composable.ReusableButton
 import com.example.donuts_app.composable.ReusableImage
 import com.example.donuts_app.composable.ReusableText
 import com.example.donuts_app.composable.SpacerVertical
+import com.example.donuts_app.navigation.Screen
 import com.example.donuts_app.ui.theme.Background
 import com.example.donuts_app.ui.theme.PrimaryColor
 
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -38,7 +40,7 @@ fun OnBoardingScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        Box(modifier = Modifier.fillMaxWidth(1.4f)){
+        Box(modifier = Modifier.fillMaxWidth(1.6f)){
             ReusableImage(image = R.drawable.img_1)
         }
 
@@ -55,8 +57,7 @@ fun OnBoardingScreen() {
             SpacerVertical(height = 20.dp)
 
             ReusableText(
-                text = "Gonuts with Donuts is a Sri Lanka dedicated food outlets for specialize" +
-                        " manufacturing of Donuts in Colombo, Sri Lanka",
+                text = stringResource(R.string.on_boarding_String),
                 color = PrimaryColor,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium
@@ -65,8 +66,9 @@ fun OnBoardingScreen() {
 
             ReusableButton(
                 stringResource(R.string.get_started),
-                Color.Black, Color.White, {},
-                modifier = Modifier
+                Color.Black, Color.White,
+                onClick = {navController.navigate(Screen.HomeScreen.route)},
+                modifier = Modifier,
             )
             SpacerVertical(height = 46.dp)
 
@@ -74,10 +76,4 @@ fun OnBoardingScreen() {
         }
 
     }
-}
-
-@Preview(showSystemUi = true, showBackground = true)
-@Composable
-fun PreviewOnBoarding() {
-    OnBoardingScreen()
 }
