@@ -16,6 +16,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,11 +25,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.donuts_app.R
 import com.example.donuts_app.navigation.BottomBarScreen
 import com.example.donuts_app.screens.add_to_cart.AddFavourite
+import com.example.donuts_app.screens.add_to_cart.AddToCartViewModel
 import com.example.donuts_app.ui.theme.Background
 import com.example.donuts_app.ui.theme.Black60
 import com.example.donuts_app.ui.theme.Black80
@@ -57,17 +62,22 @@ fun Donut(navController: NavController) {
 }
 
 @Composable
-fun BottomCard(navController: NavController){
-    Box(){
-    Card(
-        modifier = Modifier
-            .wrapContentSize()
-            .wrapContentHeight()
-            .offset((310).dp, (-35).dp),
-        shape = RoundedCornerShape(size = 16.dp),
-        colors = CardDefaults.cardColors(Color.White),
-    ) {
-        AddFavourite(onClick = {})
+fun BottomCard(
+    navController: NavController,
+    viewModel: AddToCartViewModel = hiltViewModel(),
+) {
+    val state by viewModel.state.collectAsState()
+
+    Box() {
+        Card(
+            modifier = Modifier
+                .wrapContentSize()
+                .wrapContentHeight()
+                .offset((310).dp, (-35).dp),
+            shape = RoundedCornerShape(size = 16.dp),
+            colors = CardDefaults.cardColors(Color.White),
+        ) {
+            AddFavourite(onClick = {})
     }
     Card(
         modifier = Modifier
@@ -80,7 +90,8 @@ fun BottomCard(navController: NavController){
         Column (
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 40.dp).padding(top=16.dp),
+                .padding(horizontal = 40.dp)
+                .padding(top = 16.dp),
             horizontalAlignment = Alignment.Start
                 ){
 
@@ -104,15 +115,18 @@ fun BottomCard(navController: NavController){
             Row(horizontalArrangement = Arrangement.spacedBy(20.dp) ,
             verticalAlignment = Alignment.CenterVertically){
                 ReusableQuantityCard(
-                    text = "-", textColor = Color.Black, background = White60, fontSize = 32.sp)
+                    text = "-", textColor = Color.Black, background = White60, fontSize = 32.sp,
+                    onClick = viewModel::onClickMinusItem)
                 ReusableQuantityCard(
-                    text = "1", textColor = Color.Black, background = White60, fontSize = 22.sp)
+                    text = "${state.count}", textColor = Color.Black, background = White60,
+                    fontSize = 22.sp,){}
                 ReusableQuantityCard(
-                    text = "+", textColor = Color.White, background = Color.Black, fontSize = 32.sp)
+                    text = "+", textColor = Color.White, background = Color.Black, fontSize = 32.sp,
+                    onClick = viewModel::onClickPlusItem)
             }
             SpacerVertical(height = 50.dp)
             Row(){
-                ReusableText(text = "$16", color = Color.Black, fontSize = 30.sp)
+                ReusableText(text = "£${+state.price}", color = Color.Black, fontSize = 30.sp)
                 SpacerHorizontal(width = 26.dp)
                 ReusableButton(
                     text = "Add To Cart",

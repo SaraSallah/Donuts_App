@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val _state = MutableStateFlow(HomeUiState())
     val state = _state.asStateFlow()

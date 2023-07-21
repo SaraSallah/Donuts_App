@@ -1,6 +1,7 @@
 package com.example.donuts_app.composable
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -128,9 +129,10 @@ fun ReusableQuantityCard(
     textColor: Color,
     background: Color,
     fontSize: TextUnit,
+    onClick: () -> Unit
 ) {
     Card(
-        modifier = Modifier.size(45.dp),
+        modifier = Modifier.size(45.dp).clickable { onClick() },
         colors = CardDefaults.cardColors(containerColor = background),
         shape = RoundedCornerShape(15.dp),
 
@@ -152,7 +154,7 @@ fun ReusableQuantityCard(
 @Composable
 fun PreviewTextStyle() {
     ReusableQuantityCard(
-        text = "-", textColor = Color.White, background = Color.Black, fontSize = 32.sp)
+        text = "-", textColor = Color.White, background = Color.Black, fontSize = 32.sp,{})
 //    ReusableImage(image = R.drawable.donuts)
 //    ReusableICon(R.drawable.ic_round_arrow_back_ios)
 

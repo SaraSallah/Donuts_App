@@ -4,6 +4,9 @@ data class HomeUiState(
     val todayOffers :List<DonutUiState> = emptyList(),
     val donuts :List<DonutsUiState> = emptyList()
 )
+data class DonutAppState(
+    val todayOffers: List<DonutUiState> = emptyList()
+)
 data class DonutUiState(
     val images: Int,
     val donutName: String,

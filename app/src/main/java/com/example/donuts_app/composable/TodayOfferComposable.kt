@@ -32,6 +32,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -46,6 +48,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.donuts_app.R
 import com.example.donuts_app.navigation.BottomBarScreen
+import com.example.donuts_app.screens.home.DonutAppState
 import com.example.donuts_app.screens.home.DonutUiState
 import com.example.donuts_app.screens.home.HomeUiState
 import com.example.donuts_app.screens.home.HomeViewModel
@@ -83,11 +86,17 @@ fun LazyRowDonut(
         }
     }
 }
+
 @Composable
 fun DonutCard(
     state: DonutUiState,
     navController: NavController,
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
+    val initialState = DonutAppState()
+    val state_ = remember { mutableStateOf(initialState) }
+
+
     Box(
         modifier = Modifier
             .background(Color.White)
@@ -103,18 +112,27 @@ fun DonutCard(
                     .clickable { navController.navigate(BottomBarScreen.AddToCartScreen.route) },
                 colors = CardDefaults.cardColors(state.colorBackGround)
             ) { }
+        val donutName = state.donutName
             Card(shape = CircleShape,
-                modifier = Modifier.offset((-60).dp, (-120).dp)
-        ) {
+                modifier = Modifier
+                    .offset((-60).dp, (-120).dp)
+                    .clickable
+                    { }
+            ) {
                 Box(
                     modifier = Modifier.background(Color.White),
                     contentAlignment = Alignment.Center,
                 ) {
                     IconButton(
-                        onClick = { /* Handle icon click */ },
+                        onClick = { viewModel.onClickFav(donutName) },
                     ) {
+                        val favorite = if (state.isFav) {
+                            R.drawable.fill_heart
+                        } else {
+                            R.drawable.fav // Set the default color when the donut is not a favorite
+                        }
                         Icon(
-                            painter = painterResource(id = R.drawable.fav),
+                            painter = painterResource(favorite),
                             tint = PrimaryColor, contentDescription = "",
                         )
                     }
@@ -146,7 +164,9 @@ fun DonutCard(
 //                painterResource(id = R.drawable.donuts),
 //                rememberAsyncImagePainter(model = state.images),
                 contentDescription = "category",
-                modifier = Modifier.fillMaxSize().rotate(rotationAngle),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .rotate(rotationAngle),
             )
         }
         Column(
