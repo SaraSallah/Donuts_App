@@ -35,7 +35,7 @@ import com.example.donuts_app.ui.theme.PrimaryColor
 import com.example.donuts_app.ui.theme.White60
 
 @Composable
-fun Donut() {
+fun Donut(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxHeight()
@@ -47,10 +47,11 @@ fun Donut() {
     Row(
         modifier = Modifier
             .background(Background)
-            .padding(top = 45.dp, start = 32.dp)
+            .padding(top = 25.dp, start = 25.dp)
     )
     {
-    ReusableICon(R.drawable.ic_round_arrow_back_ios)
+    ReusableICon(R.drawable.ic_round_arrow_back_ios,
+        onClick = { navController.navigate(BottomBarScreen.Home.route)})
     }
 
 }
@@ -71,7 +72,7 @@ fun BottomCard(navController: NavController){
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(.57f),
+            .fillMaxHeight(.5f),
         shape = RoundedCornerShape(topStart = 32.dp , topEnd = 32.dp),
         colors = CardDefaults.cardColors(Color.White),
 

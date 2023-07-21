@@ -33,7 +33,7 @@ fun AddToCartScreen(){
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        Donut()
+        Donut(navController)
         Column (){
 //            AddFavourite()
             Spacer(modifier = Modifier.weight(1f))

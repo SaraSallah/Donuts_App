@@ -2,6 +2,7 @@ package com.example.donuts_app.composable
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.donuts_app.R
 import com.example.donuts_app.ui.theme.PrimaryColor
 import com.example.donuts_app.ui.theme.Roboto
 import com.example.donuts_app.ui.theme.Type
@@ -90,13 +93,19 @@ fun ReusableImage(
 }
 
 @Composable
-fun ReusableICon(icon: Int) {
+fun ReusableICon(icon: Int ,
+onClick: () -> Unit) {
+    IconButton(
+        onClick = onClick,
+    ) {
     Icon(
         painter = painterResource(id = icon),
         contentDescription = "",
         tint = PrimaryColor,
-        modifier = Modifier.size(30.dp)
+        modifier = Modifier
+            .size(30.dp)
     )
+}
 }
 
 @Composable

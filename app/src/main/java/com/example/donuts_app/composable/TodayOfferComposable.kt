@@ -206,7 +206,7 @@ fun RoundedIconButton(
             IconButton(
                 onClick = { /*TODO*/ },
             ) {
-                ReusableICon(icon = icon)
+                ReusableICon(icon = icon, onClick = {})
 
             }
         }
