@@ -46,7 +46,7 @@ fun BottomBar(navController: NavHostController) {
     if (showBottomBar) {
         BottomNavigation(
             backgroundColor = Color.Transparent,
-            elevation = 0.dp
+            elevation = .5f.dp
         ) {
             screens.forEach() { screens ->
                 AddItem(
@@ -80,7 +80,8 @@ fun RowScope.AddItem(
                 modifier = Modifier
                     .size(52.dp)
                     .clip(if (isSelected) CircleShape else RoundedCornerShape(0.dp))
-                    .background(if (isSelected) PrimaryColor else Color.Transparent),
+                    .background(if (isSelected) PrimaryColor else Color.Transparent)
+                    ,
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
             ) {

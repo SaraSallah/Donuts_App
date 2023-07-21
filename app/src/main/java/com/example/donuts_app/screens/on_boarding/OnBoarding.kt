@@ -64,10 +64,9 @@ fun OnBoardingScreen() {
         ) {
                 ReusableText(
                     text = "Gonuts\n" +
-                            "with\n" +
-                            "Donuts",
+                            "with Donuts",
                     color = PrimaryColor,
-                    fontSize = 54.sp,
+                    fontSize = 58.sp,
                     fontWeight = FontWeight.SemiBold,
                 )
                 SpacerVertical(height = 20.dp)
@@ -100,9 +99,9 @@ fun AnimatedImage(imageRes: Int) {
     val infiniteTransition = rememberInfiniteTransition()
     val scale by infiniteTransition.animateFloat(
         initialValue = 1.2f,
-        targetValue = 1.9f,
+        targetValue = 2.3f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 2000),
+            animation = tween(durationMillis = 2500),
             repeatMode = RepeatMode.Reverse
         )
     )
