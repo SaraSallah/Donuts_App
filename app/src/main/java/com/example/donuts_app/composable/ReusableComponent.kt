@@ -1,15 +1,10 @@
 package com.example.donuts_app.composable
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,14 +22,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.donuts_app.R
 import com.example.donuts_app.ui.theme.PrimaryColor
-import com.example.donuts_app.ui.theme.Roboto
 import com.example.donuts_app.ui.theme.Type
 
 @Composable
@@ -49,10 +42,31 @@ fun ReusableText(
         color = color,
         fontSize = fontSize,
         fontWeight = fontWeight,
-        modifier = Modifier.wrapContentSize()
-     )
+        modifier = Modifier.wrapContentSize(),
+
+    )
 
 }
+
+@Composable
+fun CustomText(
+    text: String,
+    color: Color,
+    fontSize: TextUnit,
+    fontWeight: FontWeight = FontWeight.SemiBold,
+) {
+    Text(
+        text = text,
+        color = color,
+        fontSize = fontSize,
+        fontWeight = fontWeight,
+        modifier = Modifier.wrapContentSize(),
+        textDecoration = TextDecoration.LineThrough
+
+    )
+
+}
+
 
 @Composable
 fun ReusableButton(

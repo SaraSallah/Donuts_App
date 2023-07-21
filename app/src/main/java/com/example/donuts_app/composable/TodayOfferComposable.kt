@@ -171,7 +171,7 @@ fun DonutCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                ReusableText(
+                CustomText(
                     text = state.oldPrice,
                     color = Black60, fontSize = 14.sp
                 )
