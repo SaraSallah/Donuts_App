@@ -1,5 +1,10 @@
 package com.example.donuts_app.composable
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,6 +34,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -114,6 +120,16 @@ fun DonutCard(
                     }
                 }
             }
+        val rotationAngle = rememberInfiniteTransition().animateFloat(
+            initialValue = 0f,
+            targetValue = 180f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = 2000,
+                    easing = LinearEasing
+                )
+            )
+        ).value
 
 
         Card(
@@ -130,7 +146,7 @@ fun DonutCard(
 //                painterResource(id = R.drawable.donuts),
 //                rememberAsyncImagePainter(model = state.images),
                 contentDescription = "category",
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize().rotate(rotationAngle),
             )
         }
         Column(

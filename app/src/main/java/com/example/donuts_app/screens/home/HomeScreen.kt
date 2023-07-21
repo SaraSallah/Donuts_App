@@ -42,7 +42,7 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 56.dp),
+            .padding(top = 48.dp),
         horizontalAlignment = Alignment.Start,
     ) {
         Row(
