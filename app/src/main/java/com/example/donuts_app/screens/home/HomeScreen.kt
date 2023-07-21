@@ -23,6 +23,7 @@ import com.example.donuts_app.composable.ReusableText
 import com.example.donuts_app.composable.RoundedIconButton
 import com.example.donuts_app.composable.SpacerHorizontal
 import com.example.donuts_app.composable.SpacerVertical
+import com.example.donuts_app.navigation.LocalNavigationProvider
 import com.example.donuts_app.ui.theme.Background
 import com.example.donuts_app.ui.theme.Black
 import com.example.donuts_app.ui.theme.Black60
@@ -31,15 +32,17 @@ import com.example.donuts_app.ui.theme.SecondaryTextColor
 
 @JvmOverloads
 @Composable
-fun HomeScreen(navController: NavController,
+fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
 ) {
+    val navController = LocalNavigationProvider.current
+
     val state by homeViewModel.state.collectAsState()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 56.dp),
+            .padding(top = 48.dp),
         horizontalAlignment = Alignment.Start,
     ) {
         Row(

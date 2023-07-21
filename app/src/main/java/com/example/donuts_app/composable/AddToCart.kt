@@ -12,17 +12,13 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,18 +26,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.donuts_app.R
-import com.example.donuts_app.navigation.Screen
+import com.example.donuts_app.navigation.BottomBarScreen
 import com.example.donuts_app.screens.add_to_cart.AddFavourite
 import com.example.donuts_app.ui.theme.Background
-import com.example.donuts_app.ui.theme.Black
 import com.example.donuts_app.ui.theme.Black60
 import com.example.donuts_app.ui.theme.Black80
-import com.example.donuts_app.ui.theme.PinkBackground
 import com.example.donuts_app.ui.theme.PrimaryColor
-import com.example.donuts_app.ui.theme.SecondaryColor
-import com.example.donuts_app.ui.theme.White38
 import com.example.donuts_app.ui.theme.White60
-import com.example.donuts_app.ui.theme.White87
 
 @Composable
 fun Donut() {
@@ -126,7 +117,7 @@ fun BottomCard(navController: NavController){
                     text = "Add To Cart",
                     textColor = Color.White ,
                     background = PrimaryColor ,
-                    onClick = { navController.navigate(Screen.HomeScreen.route)},
+                    onClick = { navController.navigate(BottomBarScreen.Home.route)},
                     modifier = Modifier
                 )
 

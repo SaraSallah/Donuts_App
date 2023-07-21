@@ -23,10 +23,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.donuts_app.R
 import com.example.donuts_app.composable.BottomCard
 import com.example.donuts_app.composable.Donut
+import com.example.donuts_app.navigation.LocalNavigationProvider
 import com.example.donuts_app.ui.theme.PrimaryColor
 
 @Composable
-fun AddToCartScreen(navController: NavController){
+fun AddToCartScreen(){
+    val navController = LocalNavigationProvider.current
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -58,5 +61,5 @@ fun AddFavourite(    onClick: () -> Unit,
 @Composable
 fun PreviewCartScreen() {
     val navController = rememberNavController()
-    AddToCartScreen(navController = navController)
+    AddToCartScreen()
 }

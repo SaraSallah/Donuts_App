@@ -1,6 +1,5 @@
 package com.example.donuts_app.navigation
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -10,9 +9,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -26,8 +23,6 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import com.example.donuts_app.ui.theme.PinkBackground
 import com.example.donuts_app.ui.theme.PrimaryColor
 import com.example.donuts_app.ui.theme.White
 
@@ -40,22 +35,31 @@ fun BottomBar(navController: NavHostController) {
         BottomBarScreen.Cart,
         BottomBarScreen.Profile
     )
+    val bottomBarScreens = listOf(
+        BottomBarScreen.OnBoardingScreen.route,
+        BottomBarScreen.AddToCartScreen.route,
+    )
+
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    BottomNavigation(
-        backgroundColor = Color.Transparent,
-        elevation = 0.dp
-    ) {
-        screens.forEach() { screens ->
-            AddItem(
-                screen = screens,
-                currentDestination = currentDestination, navController = navController
-            )
+    val showBottomBar = currentDestination?.route !in bottomBarScreens
+    if (showBottomBar) {
+        BottomNavigation(
+            backgroundColor = Color.Transparent,
+            elevation = .5f.dp
+        ) {
+            screens.forEach() { screens ->
+                AddItem(
+                    screen = screens,
+                    currentDestination = currentDestination,
+                    navController = navController
+                )
+
+            }
 
         }
 
     }
-
 }
 
 @Composable
@@ -76,7 +80,8 @@ fun RowScope.AddItem(
                 modifier = Modifier
                     .size(52.dp)
                     .clip(if (isSelected) CircleShape else RoundedCornerShape(0.dp))
-                    .background(if (isSelected) PrimaryColor else Color.Transparent),
+                    .background(if (isSelected) PrimaryColor else Color.Transparent)
+                    ,
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
             ) {

@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
-import com.example.donuts_app.navigation.Screen
+import com.example.donuts_app.navigation.BottomBarScreen
 import com.example.donuts_app.screens.home.DonutsUiState
 import com.example.donuts_app.screens.home.HomeUiState
 import com.example.donuts_app.screens.home.HomeViewModel
@@ -78,7 +78,7 @@ fun DonutsCard(
         Card(
             modifier = Modifier
                 .fillMaxSize()
-                .clickable { navController.navigate(Screen.AddToCartScreen.route) },
+                .clickable { navController.navigate(BottomBarScreen.AddToCartScreen.route) },
             colors = CardDefaults.cardColors(Color.White)
         ) {
         }
