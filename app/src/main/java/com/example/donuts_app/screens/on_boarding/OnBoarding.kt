@@ -1,7 +1,5 @@
 package com.example.donuts_app.screens.on_boarding
 
-import android.icu.number.Scale
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,25 +11,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.donuts_app.R
 import com.example.donuts_app.composable.ReusableButton
 import com.example.donuts_app.composable.ReusableImage
 import com.example.donuts_app.composable.ReusableText
 import com.example.donuts_app.composable.SpacerVertical
-import com.example.donuts_app.navigation.Screen
+import com.example.donuts_app.navigation.BottomBarScreen
+import com.example.donuts_app.navigation.LocalNavigationProvider
 import com.example.donuts_app.ui.theme.Background
 import com.example.donuts_app.ui.theme.PrimaryColor
 
 @Composable
-fun OnBoardingScreen(navController: NavController) {
+fun OnBoardingScreen() {
+    val navController = LocalNavigationProvider.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -78,7 +75,7 @@ fun OnBoardingScreen(navController: NavController) {
             ReusableButton(
                 stringResource(R.string.get_started),
                 Color.Black, Color.White,
-                onClick = {navController.navigate(Screen.HomeScreen.route)},
+                onClick = {navController.navigate(BottomBarScreen.Home.route)},
                 modifier = Modifier,
             )
             SpacerVertical(height = 46.dp)

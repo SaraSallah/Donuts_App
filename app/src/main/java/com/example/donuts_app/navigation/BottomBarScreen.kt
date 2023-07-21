@@ -29,4 +29,12 @@ sealed class BottomBarScreen(
         route = "cart",
         icon =R.drawable.buy
     )
+    object OnBoardingScreen :BottomBarScreen(
+        route = "OnBoardingScreen",
+        0
+    )
+    object AddToCartScreen :BottomBarScreen(
+        route = "AddToCartScreen",
+        0
+    )
 }
